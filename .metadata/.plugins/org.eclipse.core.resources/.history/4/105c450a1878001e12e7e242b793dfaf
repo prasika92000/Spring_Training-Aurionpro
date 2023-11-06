@@ -1,0 +1,9 @@
+package com.aurionpro.repository;
+
+import java.util.List;
+
+
+public class EmployeeRepository extends JpaRepository<Employee, Long> {
+
+	
+}

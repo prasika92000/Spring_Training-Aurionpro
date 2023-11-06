@@ -1,0 +1,14 @@
+package com.aurionpro.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name = "STUDENT_TBL")
+@AllArgsConstructor
+@NoArgsConstructor
+public class Student {
+
+}

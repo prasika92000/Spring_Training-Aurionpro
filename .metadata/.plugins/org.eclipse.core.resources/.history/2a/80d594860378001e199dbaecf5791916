@@ -1,0 +1,27 @@
+package com.aurionpro.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.aurionpro.entity.Tutorial;
+
+import com.aurionpro.repository.TutorialRepository;
+
+@Service
+public class TutorialServiceImpl implements TutorialService {
+
+	private TutorialRepository repository;
+
+	public TutorialServiceImpl(TutorialRepository repository) {
+		super();
+		this.repository = repository;
+	}
+
+	@Override
+	public List<Tutorial> findAll() {
+
+		return repository.findAll();
+	}
+
+}

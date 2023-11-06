@@ -1,0 +1,10 @@
+package com.aurionpro.service;
+
+public interface InstructorTechDetailService {
+
+	List<InstructorTechDetail> findAll();
+
+	InstructorTechDetail save(InstructorTechDetail instructorDetails);
+
+	void deleteInstructorDetailsById(int instructorDetailsId);
+}

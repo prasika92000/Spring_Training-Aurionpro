@@ -1,0 +1,115 @@
+package com.aurionpro.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import com.aurionpro.entity.Tutorial;
+
+import com.aurionpro.repository.TutorialRepository;
+
+@Service
+public class TutorialServiceImpl implements TutorialService {
+
+	private TutorialRepository repository;
+
+	public TutorialServiceImpl(TutorialRepository repository) {
+		super();
+		this.repository = repository;
+	}
+
+	@Override
+	public List<Tutorial> findAll() {
+
+		return repository.findAll();
+	}
+
+	@Override
+    public Optional<Tutorial> findById(long id) {
+        return repository.findById(id);
+    }
+
+    @Override
+    public List<Tutorial> findByLevel(int level) {
+        return repository.findByLevel(level);
+    }
+
+    @Override
+    public List<Tutorial> findByPublished(boolean isPublished) {
+        return repository.findByPublished(isPublished);
+    }
+
+    @Override
+    public List<Tutorial> findByLevelIs(int level) {
+        return repository.findByLevelIs(level);
+    }
+
+    @Override
+    public List<Tutorial> findByLevelEquals(int level) {
+        return repository.findByLevelEquals(level);
+    }
+
+	@Override
+	public List<Tutorial> findByLevelNot(int level) {
+		return repository.findByLevelNot(level);
+	}
+
+	@Override
+	public List<Tutorial> findByLevelIsNot(int level) {
+		return repository.findByLevelIsNot(level);
+	}
+
+	@Override
+	public List<Tutorial> findByLevelAndPublished(int level, boolean isPublished) {
+		  return repository.findByLevelAndPublished(level, isPublished);
+	}
+
+	@Override
+	public List<Tutorial> findByTitleOrDescription(String title, String description) {
+	    return repository.findByTitleOrDescription(title, description);
+	}
+
+	@Override
+	public List<Tutorial> findByTitleLike(String title) {
+		  return repository.findByTitleLike(title);
+	}
+
+	@Override
+	public List<Tutorial> findByTitleStartingWith(String title) {
+        return repository.findByTitleStartingWith(title);
+	}
+
+	@Override
+	public List<Tutorial> findByTitleEndingWith(String title) {
+		 return repository.findByTitleEndingWith(title);
+	}
+
+	@Override
+	public List<Tutorial> findByTitleContaining(String title) {
+        return repository.findByTitleContaining(title);
+
+	}
+
+	@Override
+	public List<Tutorial> findByTitleContainingOrDescriptionContaining(String title, String description) {
+        return repository.findByTitleContainingOrDescriptionContaining(title, description);
+
+	}
+
+	@Override
+	public List<Tutorial> findByTitleContainingAndPublished(String title, boolean isPublished) {
+        return repository.findByTitleContainingAndPublished(title, isPublished);
+
+	}
+	 @Override
+	    public List<Tutorial> findByPublishedTrue() {
+	        return repository.findByPublished(true);
+	    }
+
+	    @Override
+	    public List<Tutorial> findByPublishedFalse() {
+	        return repository.findByPublished(false);
+	    }
+
+}

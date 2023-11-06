@@ -1,0 +1,27 @@
+package com.aurionpro.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.aurionpro.entity.Tutorial;
+
+public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
+
+	List<Tutorial> findByLevel(int level);
+
+	List<Tutorial> findByPublished(boolean isPublished);
+
+	List<Tutorial> findByLevelIs(int level);
+
+	List<Tutorial> findByLevelEquals(int level);
+
+	List<Tutorial> findByLevelNot(int level);
+
+	List<Tutorial> findByLevelIsNot(int level);
+
+	List<Tutorial> findByLevelAndPublished(int level, boolean isPublished);
+
+	List<Tutorial> findByTitleOrDescription(String title, String description);
+
+}

@@ -1,0 +1,7 @@
+package com.aurionpro.repository;
+
+public class interface CourseRepository extends JpaRepository<Course, Long> {
+
+    List<Course> findByFeeLessThan(double fee);
+
+}

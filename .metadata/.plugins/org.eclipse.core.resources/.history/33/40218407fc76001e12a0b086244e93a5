@@ -1,0 +1,22 @@
+package com.aurionpro.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.aurionpro.service.InstructorService;
+
+@RestController
+@RequestMapping("/app")
+public class InstructorTechDetailController {
+
+	private InstructorService service;
+	
+	public InstructorTechDetailController(InstructorService service)
+	{
+		super();
+		this.service = service;
+	}
+	
+	
+	
+}

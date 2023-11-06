@@ -1,0 +1,117 @@
+package com.aurionpro.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+
+import com.aurionpro.entity.Employee;
+import com.aurionpro.entity.EmployeePageDto;
+import com.aurionpro.exception.EmployeeNotFoundException;
+import com.aurionpro.service.EmployeeService;
+
+@RestController
+@RequestMapping("/api")
+public class EmployeeController {
+
+	private EmployeeService service;
+
+	public EmployeeController(EmployeeService service) {
+		super();
+		this.service = service;
+	}
+	
+//	
+//	@GetMapping("/employees")
+//	public EmployeePageDto getEmployees(
+//	    @RequestParam(defaultValue = "10") int pageSize,
+//	    @RequestParam(defaultValue = "0") int pageNo) {
+//
+//	    Sort sort = Sort.by(Sort.Direction.ASC, "lastName");
+//	    EmployeePageDto employeeDto = service.findAll(pageNo, pageSize, sort);
+//	    return employeeDto;
+//	}
+	
+	@GetMapping("/employees")
+	public EmployeePageDto getEmployees(
+	    @RequestParam(defaultValue = "10") int pageSize,
+	    @RequestParam(defaultValue = "0") int pageNo,
+	    @RequestParam(defaultValue = "firstName") String sortField,
+	    @RequestParam(defaultValue = "desc") String sortDirection) {
+
+	
+	    
+	    EmployeePageDto employeeDto = service.findAll(pageNo, pageSize, sortField,sortDirection);
+	    return employeeDto;
+	}
+
+
+
+	@PostMapping("/employees")
+	public ResponseEntity<Employee> getEmployeeByID(@RequestBody Employee employee) {
+		Employee tempEmployee = service.save(employee);
+		return new ResponseEntity<>(tempEmployee, HttpStatus.CREATED);
+	}
+
+	@GetMapping("/employees/{id}")
+	public ResponseEntity<Employee> getEmployeeById(@PathVariable int id) throws EmployeeNotFoundException {
+		Optional<Employee> optionalEmployee = service.findById(id);
+		Employee employee = null;
+		if (optionalEmployee.isPresent()) {
+			employee = optionalEmployee.get();
+			return new ResponseEntity<>(employee, HttpStatus.OK);
+		} else {
+
+			throw new EmployeeNotFoundException("Employee with id " + id + " was not found");
+		}
+	}
+
+	@PutMapping("employees/{id}")
+	public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee, @PathVariable int id)
+			throws EmployeeNotFoundException {
+		employee.setId(id);
+		Employee tempEmployee = service.save(employee);
+		if (tempEmployee != null) {
+			return new ResponseEntity<>(tempEmployee, HttpStatus.OK);
+		} else {
+
+			throw new EmployeeNotFoundException("Employee with id " + id + " was not found");
+		}
+
+	}
+
+	@DeleteMapping("/employees/{id}")
+	public ResponseEntity<HttpStatus> deleteEmployeeById(@PathVariable int id) {
+		if (service.deleteById(id)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping("/employees/emai/{email}")
+	public ResponseEntity<List<Employee>> getEmail(@PathVariable String email){
+		List<Employee> employees=service.findByEmail(email);
+		return  new ResponseEntity<>(employees,HttpStatus.OK);
+ 
+	}
+	
+	
+
+	
+
+
+}

@@ -1,0 +1,14 @@
+package com.aurionpro.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.aurionpro.entity.Employee;
+import com.aurionpro.entity.Tutorial;
+import com.aurionpro.service.TutorialService;
+
+public interface AddressRepository extends JpaRepository<Employee, Long> {
+
+
+}

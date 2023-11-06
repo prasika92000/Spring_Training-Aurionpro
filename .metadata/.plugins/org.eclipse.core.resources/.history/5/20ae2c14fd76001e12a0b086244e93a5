@@ -1,0 +1,30 @@
+package com.aurionpro.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.aurionpro.entity.InstructorTechDetail;
+
+@Service
+public class InstructorTechDetailServiceImpl implements InstructorTechDetailService {
+
+	@Override
+	public List<InstructorTechDetail> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public InstructorTechDetail save(InstructorTechDetail instructorDetails) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteInstructorDetailsById(int instructorDetailsId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

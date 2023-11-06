@@ -1,0 +1,14 @@
+package com.aurionpro.repository;
+
+import java.util.List;
+
+import com.aurionpro.entity.Employee;
+
+public class EmployeeRepository {
+
+	public void saveAll(List<Employee> empData) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
